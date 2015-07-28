@@ -1,4 +1,4 @@
-ROM elasticsearch:v1.0
+FROM elasticsearch:v1.0
 MAINTAINER AS-support <as-support[at]intelligrape[DOT]com>
 
 EXPOSE 10810 10910
