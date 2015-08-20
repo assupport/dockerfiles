@@ -1,0 +1,23 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+        server_name localhost;
+        access_log off;
+        location / {
+                access_log on;
+                auth_basic "Restricted";
+                satisfy any;
+                allow 10.0.0.0/24;
+                deny  all;
+                auth_basic_user_file /etc/nginx/.htpasswd;
+                proxy_pass http://tomcat:8080;
+        }
+
+        location = /util/test {
+                proxy_pass http://tomcat:8080;
+        }
+}
